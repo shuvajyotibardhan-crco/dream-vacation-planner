@@ -3,9 +3,9 @@
 // way to load plugins in mixed or stubborn Node environments.
 module.exports = {
   plugins: {
-    // FINAL FIX: Reverting to the canonical 'tailwindcss' plugin name. 
-    // This is the correct, standard name for modern Vite/Tailwind setups.
-    'tailwindcss': {}, 
+    // DEFINITIVE FIX: Using the fully qualified plugin name as suggested by the Netlify 
+    // build error ('@tailwindcss/postcss') to resolve the dependency conflict on the server.
+    '@tailwindcss/postcss': {}, 
     'autoprefixer': {},
   },
 }
