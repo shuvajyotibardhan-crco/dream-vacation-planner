@@ -5,15 +5,15 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   
-  // FINAL FIX: Explicitly define PostCSS configuration inside Vite config.
-  // This bypasses environmental issues where Netlify's build process ignores 
-  // the external 'postcss.config.js' file.
+  // FINAL FIX: Explicitly define PostCSS configuration inside Vite config 
+  // using the require() syntax. This is the most reliable way to ensure 
+  // Netlify's environment loads the plugins correctly.
   css: {
     postcss: {
       plugins: [
-        // Load the plugins by name. Netlify/Vite should now be forced to see them.
-        'tailwindcss',
-        'autoprefixer',
+        // Using require() guarantees the plugins are loaded as valid PostCSS plugins
+        require('tailwindcss'),
+        require('autoprefixer'),
       ],
     },
   },
