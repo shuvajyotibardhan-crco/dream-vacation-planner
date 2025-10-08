@@ -1,10 +1,11 @@
 /**
- * PostCSS configuration to handle Tailwind CSS compilation.
- * Note: Uses require() for compatibility in Netlify build environment.
+ * PostCSS configuration for a modern Vite/Tailwind setup.
+ * Uses string references for plugins, which Vite and Netlify can resolve correctly.
  */
 export default {
-  plugins: [
-    require('tailwindcss'), // Ensure Tailwind runs first
-    require('autoprefixer'), // Ensure Autoprefixer runs second
-  ],
+  plugins: {
+    // TailwindCSS and Autoprefixer packages are resolved automatically by name.
+    'tailwindcss': {},
+    'autoprefixer': {},
+  }
 }
