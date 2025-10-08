@@ -5,15 +5,16 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   
-  // DEFINITIVE FIX: Using explicit require() calls. This must be used with 
-  // the **.cjs** file extension to prevent Node from throwing the 
-  // "Dynamic require... not supported" error, ensuring the plugins load correctly.
+  // DEFINITIVE FIX: We must use the standard, string-based ES Module syntax 
+  // because your package.json sets "type": "module", which prohibits the 
+  // CommonJS 'require()' syntax.
   css: {
     postcss: {
       plugins: [
-        // Using require() forces PostCSS to recognize the plugins as valid objects/functions
-        require('tailwindcss'),
-        require('autoprefixer'),
+        // Using string names allows Vite to load these plugins correctly
+        // in an ES Module environment without throwing the "Dynamic require" error.
+        'tailwindcss',
+        'autoprefixer',
       ],
     },
   },
