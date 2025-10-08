@@ -5,15 +5,15 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   
-  // FINAL FIX: Using the correct, modern string-based syntax for plugins.
-  // This is the standard configuration for ES Module (type: "module") Vite projects,
-  // resolving the require() and PostCSS configuration conflicts.
+  // DEFINITIVE FIX: Using explicit require() calls. This must be used with 
+  // the **.cjs** file extension to prevent Node from throwing the 
+  // "Dynamic require... not supported" error, ensuring the plugins load correctly.
   css: {
     postcss: {
       plugins: [
-        // Using string names forces Vite and PostCSS to load the plugins correctly.
-        'tailwindcss',
-        'autoprefixer',
+        // Using require() forces PostCSS to recognize the plugins as valid objects/functions
+        require('tailwindcss'),
+        require('autoprefixer'),
       ],
     },
   },
