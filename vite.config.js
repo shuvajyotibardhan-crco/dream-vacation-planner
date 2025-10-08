@@ -5,17 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   
-  // DEFINITIVE FIX: We must use the standard, string-based ES Module syntax 
-  // because your package.json sets "type": "module", which prohibits the 
-  // CommonJS 'require()' syntax.
-  css: {
-    postcss: {
-      plugins: [
-        // Using string names allows Vite to load these plugins correctly
-        // in an ES Module environment without throwing the "Dynamic require" error.
-        'tailwindcss',
-        'autoprefixer',
-      ],
-    },
-  },
+  // FINAL ATTEMPT: Removing PostCSS configuration from here.
+  // It has been moved to a standalone file (postcss.config.js) 
+  // to force the Netlify build environment to load it correctly.
 })
