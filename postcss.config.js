@@ -1,11 +1,11 @@
 /**
- * PostCSS configuration forcing the Array syntax with require()
- * to ensure compatibility with older PostCSS versions used in Netlify's build environment.
+ * PostCSS configuration using the modern ES Module syntax (export default)
+ * and the object plugin structure required by Vite, resolving the CommonJS conflict.
  */
-module.exports = {
-  plugins: [
-    // This explicitly loads the plugins required by Tailwind
-    require('tailwindcss'), 
-    require('autoprefixer'),
-  ],
+export default {
+  plugins: {
+    // These plugins are automatically resolved by name by PostCSS and Vite.
+    'tailwindcss': {},
+    'autoprefixer': {},
+  }
 }
